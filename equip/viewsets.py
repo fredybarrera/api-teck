@@ -4,6 +4,7 @@ from .serializers import EquipSerializer, EquipCoordTransSerializer
 from rest_framework import viewsets
 from rest_framework.response import Response
 import numpy
+from decimal import Decimal
 
 posiciones = []
 data = []
@@ -48,7 +49,7 @@ def getCoords(item):
         NORTHING,
         ELEVATION,
         SPEED
-        from teck.dbo.EQUIP_COORD_TRANS 
+        from WencoCDA.dbo.EQUIP_COORD_TRANS 
         where EQUIP_IDENT = '{0}'
         order by [TIMESTAMP] desc
         OFFSET 0 ROWS
@@ -83,27 +84,15 @@ def getCoords(item):
 
 def transform(EASTING, NORTHING, ELEVATION):
 
-    easting_aux = str(EASTING)
-    northing_aux = str(NORTHING)
-    elevation_aux = str(ELEVATION)
-
-    easting = easting_aux.replace(".0000", "")
-    northing = northing_aux.replace(".0000", "")
-    elevation = elevation_aux.replace(".0000", "")
-    
-    int_easting = float(easting)
-    int_northing = float(northing)
-    int_elevation = float(elevation)
-
-    X_PSAD56 = (int_easting/10000)+200000  # K4
-    Y_PSAD56 = (int_northing/10000)+6600000  # K5
-    Z_PSAD56 = int_elevation/10000  # K6
-
+    X_PSAD56 = EASTING + 200000  # K4
+    Y_PSAD56 = NORTHING + 6600000  # K5
+    Z_PSAD56 = ELEVATION # K6
+   
     resta_x = 182.81409164
     resta_y = 375.74430404
 
-    X_WGS84 = X_PSAD56 - resta_x
-    Y_WGS84 = Y_PSAD56 - resta_y
+    X_WGS84 = X_PSAD56 - Decimal(resta_x)
+    Y_WGS84 = Y_PSAD56 - Decimal(resta_y)
     Z_WGS84 = Z_PSAD56
 
     return [X_WGS84, Y_WGS84, Z_WGS84]
