@@ -16,6 +16,7 @@ class EquipViewSet(viewsets.ModelViewSet):
 
     serializer_class = EquipSerializer
     queryset = Equip.objects.all().order_by('-equip_ident')
+    http_method_names = ['get']
     # queryset = Equip.objects.all()[0:1]
 
     def list(self, request):
