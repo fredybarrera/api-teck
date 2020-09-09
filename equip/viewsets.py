@@ -5,6 +5,8 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 import numpy
 from decimal import Decimal
+from decouple import config
+
 
 posiciones = []
 data = []
@@ -43,6 +45,7 @@ class EquipCoordTransViewSet(viewsets.ModelViewSet):
 def getCoords(item):
 
     with connection.cursor() as cursor:
+        database = config('APP_DATABASE_NAME', default='')
         query = """
         select [TIMESTAMP],
         EQUIP_IDENT,
@@ -52,12 +55,12 @@ def getCoords(item):
         NORTHING,
         ELEVATION,
         SPEED
-        from WencoCDA.dbo.EQUIP_COORD_TRANS 
-        where EQUIP_IDENT = '{0}'
+        from {0}.dbo.EQUIP_COORD_TRANS 
+        where EQUIP_IDENT = '{1}'
         order by [TIMESTAMP] desc
         OFFSET 0 ROWS
         FETCH NEXT 1 ROWS ONLY;
-        """.format(item['equip_ident'])
+        """.format(database, item['equip_ident'])
 
         cursor.execute(query)
         row = cursor.fetchone()

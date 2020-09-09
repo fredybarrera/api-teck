@@ -48,6 +48,11 @@ Para usar un puerto distinto:
 python manage.py runserver 7000
 ```
 
+Para usar la dirección ip del servidor
+```bash
+python manage.py runserver 172.30.3.196:8000
+```
+
 ### Acceso
 
 Acceder a la siguiente url:
