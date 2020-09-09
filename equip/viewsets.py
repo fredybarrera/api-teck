@@ -19,10 +19,13 @@ class EquipViewSet(viewsets.ModelViewSet):
     def list(self, request):
         queryset = Equip.objects.all().values()
         serializer = EquipSerializer(queryset, many=True)
+        posiciones = []
+        data = []
         for index, item in enumerate(queryset):
-            getCoords(item)
+            pos = getCoords(item)
+            if pos:
+                 posiciones.append(pos)
        
-        # print('data: ', data)
         data.append({'posiciones': posiciones})
 
         return Response({'Flota': data})
@@ -79,8 +82,9 @@ def getCoords(item):
                 'EQP_TYPE': item['eqp_type'],
                 'FLEET_IDENT': item['fleet_ident']
             }
-            posiciones.append(aux)
-
+            return aux
+        
+        return None
 
 def transform(EASTING, NORTHING, ELEVATION):
 
