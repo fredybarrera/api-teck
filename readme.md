@@ -29,11 +29,15 @@ pip install -r requirements.txt
 Crear un archivo **.env** en la raiz del proyecto, tomando como referencia el archivo **.env_example** y completar los valores correspondientes para las variables:
 ```bash
 CORS_WHITE_LIST_LOCALHOST = ""
+
 APP_DATABASE_NAME = ""
 APP_DATABASE_USER = ""
 APP_DATABASE_PASSWORD = ""
 APP_DATABASE_HOST = ""
 APP_DATABASE_DRIVER = ""
+
+APP_SECRET_KEY = ""
+APP_DEBUG = 
 ```
 
 ## Uso
