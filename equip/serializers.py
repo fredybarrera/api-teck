@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Equip, EquipCoordTrans
+from .models import Equip, EquipCoordTrans, MineOreQuality
 
 
 class EquipSerializer(serializers.ModelSerializer):
@@ -16,3 +16,11 @@ class EquipCoordTransSerializer(serializers.ModelSerializer):
     class Meta:
         model = EquipCoordTrans
         fields  = ('__all__')
+
+
+class MineOreQualitySerializer(serializers.ModelSerializer):
+    """Serializer del obtejo mineorequality."""
+
+    class Meta:
+        model = MineOreQuality
+        fields = ('__all__')

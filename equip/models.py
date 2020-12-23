@@ -140,3 +140,80 @@ class EquipCoordTrans(models.Model):
         managed = False
         db_table = 'EQUIP_COORD_TRANS'
         unique_together = (('timestamp', 'equip_ident'),)
+
+
+class MineOreQuality(models.Model):
+    shift_date = models.CharField(
+        db_column='SHIFT_DATE', max_length=255, blank=True, null=True)
+    shift_ident = models.CharField(
+        db_column='SHIFT_IDENT', max_length=255, blank=True, null=True)
+    haul_cycle_rec_ident = models.CharField(
+        db_column='HAUL_CYCLE_REC_IDENT', max_length=255, blank=True, null=True)
+    load_timestamp = models.CharField(
+        db_column='LOAD_TIMESTAMP', primary_key=True, max_length=255)
+    dump_timestamp = models.CharField(
+        db_column='DUMP_TIMESTAMP', max_length=255, blank=True, null=True)
+    origin_short_name = models.CharField(
+        db_column='ORIGIN_SHORT_NAME', max_length=255, blank=True, null=True)
+    block_id = models.CharField(
+        db_column='BLOCK_ID', max_length=255, blank=True, null=True)
+    shovel_equip_ident = models.CharField(
+        db_column='SHOVEL_EQUIP_IDENT', max_length=255, blank=True, null=True)
+    norte_carga = models.CharField(
+        db_column='NORTE_CARGA', max_length=255, blank=True, null=True)
+    este_carga = models.CharField(
+        db_column='ESTE_CARGA', max_length=255, blank=True, null=True)
+    elevacion_carga = models.CharField(
+        db_column='ELEVACION_CARGA', max_length=255, blank=True, null=True)
+    destination_short_name = models.CharField(
+        db_column='DESTINATION_SHORT_NAME', max_length=255, blank=True, null=True)
+    quantity_reporting = models.CharField(
+        db_column='QUANTITY_REPORTING', max_length=255, blank=True, null=True)
+    cobre_total = models.CharField(
+        db_column='[COBRE TOTAL]', max_length=255, blank=True, null=True)
+    cobre_soluble = models.CharField(
+        db_column='[COBRE SOLUBLE]', max_length=255, blank=True, null=True)
+    ppm_mercurio = models.CharField(
+        db_column='[PPM MERCURIO]', max_length=255, blank=True, null=True)
+    molibdeno = models.CharField(
+        db_column='MOLIBDENO', max_length=255, blank=True, null=True)
+    densidad_insitu = models.CharField(
+        db_column='[DENSIDAD INSITU]', max_length=255, blank=True, null=True)
+    energia_especif = models.CharField(
+        db_column='[ENERGIA ESPECIF]', max_length=255, blank=True, null=True)
+    oro = models.CharField(
+        db_column='ORO', max_length=255, blank=True, null=True)
+    fet = models.CharField(
+        db_column='FeT', max_length=255, blank=True, null=True)
+    dureza_dwi = models.CharField(
+        db_column='[DUREZA Dwi]', max_length=255, blank=True, null=True)
+    dureza_bmwi = models.CharField(
+        db_column='[DUREZA bmwi]', max_length=255, blank=True, null=True)
+    lith = models.CharField(
+        db_column='lith', max_length=255, blank=True, null=True)
+    alt = models.CharField(
+        db_column='alt', max_length=255, blank=True, null=True)
+    qs = models.CharField(
+        db_column='qs', max_length=255, blank=True, null=True)
+    arc = models.CharField(
+        db_column='arc', max_length=255, blank=True, null=True)
+    ugc = models.CharField(
+        db_column='ugc', max_length=255, blank=True, null=True)
+    ugmrec = models.CharField(
+        db_column='ugmrec', max_length=255, blank=True, null=True)
+    curec = models.CharField(
+        db_column='curec', max_length=255, blank=True, null=True)
+    rec_cu = models.CharField(
+        db_column='rec_cu', max_length=255, blank=True, null=True)
+    hauler_equip_ident = models.CharField(
+        db_column='HAULER_EQUIP_IDENT', max_length=255, blank=True, null=True)
+    norte_vaciado = models.CharField(
+        db_column='NORTE_VACIADO', max_length=255, blank=True, null=True)
+    este_vaciado = models.CharField(
+        db_column='ESTE_VACIADO', max_length=255, blank=True, null=True)
+    elevacion_vaciad = models.CharField(
+        db_column='ELEVACION_VACIADO', max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'WENCO_MINE_ORE_QUALITY'
